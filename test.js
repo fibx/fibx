@@ -24,6 +24,15 @@ for (var i = 0; i < 1000; i++) {
 }
 
 app.use('^/go(/.*)$', http.fileHandler('./'));
+
+app.use('^/a(/.*)$', function(next) {
+    this.state.number = -1;
+    next();
+});
+app.use('^/a(/.*)$', function() {
+    this.state.number = -2;
+});
+
 app.use('^(/.*)$', function() {
     this.state.number++;
 });
