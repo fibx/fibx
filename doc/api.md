@@ -147,7 +147,7 @@ this.is(/text\/.*/)
 **this.type =**					
 设置相应的 Content-Type
 	
-**this.status**						
+**this.status =**						
 设置相应的返回状态 					
 
 **this.set( obj )**							
