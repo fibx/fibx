@@ -172,7 +172,7 @@ this.set({
 **this.cookies.set( name, value [, option])**
 设置 cookies 的值	,默认是加密且 httpOnly = true 的						
 
-```json
+```javascript
   option = {
   		signed: boolean,				//默认为 true
   		httpOnly: boolean, 			//默认为 true
