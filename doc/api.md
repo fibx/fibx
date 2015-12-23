@@ -175,7 +175,7 @@ this.set({
 ```javascript
   option = {
   		signed: boolean,				//默认为 true
-  		httpOnly: boolean, 			//默认为 true
+  		httpOnly: boolean, 				//默认为 true
   		path: String,
   		domain: String,
   		expires: Date
