@@ -1,0 +1,29 @@
+{
+  "name": "fibjs-fibx",
+  "version": "0.1.5",
+  "description": "fibjs web framework",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "install": "fibjs fibjs-install.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fibx/fibx.git"
+  },
+  "keywords": [
+    "fibjs",
+    "fibx",
+    "web",
+    "framework"
+  ],
+  "author": "Rube",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fibx/fibx/issues"
+  },
+  "homepage": "https://github.com/fibx/fibx#readme"
+}
