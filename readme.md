@@ -54,7 +54,7 @@ app.listen(10023);
 
 ##Api
 
-[API Doc](https://github.com/fibx/fibx/blob/master/readme.md)
+[API Doc](https://github.com/fibx/fibx/blob/master/doc/api.md)
        
 ##Other          
 
@@ -86,4 +86,11 @@ switch (os.type) {
 "scripts": {
     "install": "fibjs fibjs-install.js",
  }
-```
+```           
+
+##Next      
+more 中间件 : 					
+
+* route							
+* session								
+* static

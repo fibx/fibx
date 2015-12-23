@@ -9,8 +9,11 @@ var isExists = fs.exists(modulesPath);
 !isExists && fs.mkdir(modulesPath);
 
 switch (os.type) {
+    case 'Linux':
     case 'Darwin':
         process.exec('ln -s ../node_modules/' + moduleName + ' ' + modulesPath + '/' + moduleName);
+        break;
+    case 'Windows':
         break;
     default :
         process.exec('ln -s ../node_modules/' + moduleName + ' ' + modulesPath + '/' + moduleName);
