@@ -1,6 +1,6 @@
 {
   "name": "fibjs-fibx",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "fibjs web framework",
   "main": "index.js",
   "directories": {

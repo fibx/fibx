@@ -3,7 +3,7 @@
  * @date 15/12/15
  */
 
-var app = require('./index')();
+var app = require('../index')();
 var http = require('http');
 
 app.use(function(next) {
