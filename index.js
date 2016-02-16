@@ -28,7 +28,7 @@ app.listen = function(port) {
     var that = this;
     for (var route in this.middlewares) {
         (function(route) {
-            that.connected[route] = connect.call(that, that.middlewares['all'].concat(that.middlewares[route]));
+            that.connected[route] = connect.call(that, that.middlewares['__all__'].concat(that.middlewares[route]));
             that.routing[route] = function(r) {
                 that.handler.call(that, r, route);
             }
@@ -41,7 +41,7 @@ app.listen = function(port) {
 
 app.use = function(middleware) {
     if (typeof middleware === 'function') {
-        this.middlewares['all'].push(middleware);
+        this.middlewares['__all__'].push(middleware);
     } else {
         var argv = Array.prototype.slice.apply(arguments);
         if (argv[1].toString().toLocaleLowerCase() === 'handler') {

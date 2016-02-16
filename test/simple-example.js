@@ -23,6 +23,10 @@ for (var i = 0; i < 1000; i++) {
     });
 }
 
+app.use('^/all(/.*)$', function(){
+    this.state.number = 'all';
+});
+
 app.use('^/go(/.*)$', http.fileHandler('./'));
 
 app.use('^/a(/.*)$', function(next) {
