@@ -5,6 +5,7 @@
 
 var app = require('../index')();
 var http = require('http');
+var fs = require('fs');
 
 app.use(function(next) {
 
@@ -13,7 +14,9 @@ app.use(function(next) {
     this.state.number = 1;
     this.state['back'] = 'fibx';
     var a = next();
-    this.body = this.state.number + '---' + a;
+    if (a) {
+        this.body = a + this.state.number;
+    }
 });
 
 for (var i = 0; i < 1000; i++) {
@@ -23,9 +26,15 @@ for (var i = 0; i < 1000; i++) {
     });
 }
 
-app.use('^/all(/.*)$', function(){
+app.use('^/all(/.*)$', function() {
     this.state.number = 'all';
     return 'hello world Rube~';
+});
+
+app.use('^/s.zip$', function() {
+    var stream = fs.open(__dirname + '/simple-example.js');
+    this.type = 'application/octet-stream';
+    this.body = stream;
 });
 
 app.use('^/go(/.*)$', http.fileHandler('./'));
