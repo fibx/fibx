@@ -142,7 +142,7 @@ this.is(/text\/.*/)
 跳转到相应的 url							
 
 **this.body =**				
-设置相应返回的内容						
+设置相应返回的内容,fibx 会自动将对象转换为 json 串,也能够对 stream 进行	输出					
 
 **this.type =**					
 设置相应的 Content-Type
