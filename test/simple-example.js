@@ -13,7 +13,7 @@ app.use(function(next) {
     this.state.number = 1;
     this.state['back'] = 'fibx';
     next();
-    this.body = 1;
+    this.body = [1,2,3];
 });
 
 for (var i = 0; i < 1000; i++) {
