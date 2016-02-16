@@ -12,19 +12,20 @@ app.use(function(next) {
     this.state = {};
     this.state.number = 1;
     this.state['back'] = 'fibx';
-    next();
-    this.body = [1,2,3];
+    var a = next();
+    this.body = this.state.number + '---' + a;
 });
 
 for (var i = 0; i < 1000; i++) {
     app.use(function(next) {
         this.state.number++;
-        next && next();
+        return next && next();
     });
 }
 
 app.use('^/all(/.*)$', function(){
     this.state.number = 'all';
+    return 'hello world Rube~';
 });
 
 app.use('^/go(/.*)$', http.fileHandler('./'));
