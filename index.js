@@ -16,7 +16,7 @@ module.exports = Application;
 
 function Application() {
     if (!(this instanceof Application)) return new Application();
-    this.middlewares = {'all': []};
+    this.middlewares = {'__all__': []};
     this.connected = {};
     this.routing = {};
     request.init.call(this);
