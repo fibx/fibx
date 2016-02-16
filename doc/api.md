@@ -99,7 +99,7 @@ this.query       // {a : 1 , b : 2}
 **this.path**					
 请求的路径 ```/post/Rube```
 
-**this.request.body**						
+**this.form**						
 请求的表单参数
 
 **this.header**						
