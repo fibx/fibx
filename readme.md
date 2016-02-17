@@ -90,12 +90,9 @@ switch (os.type) {
 
 ##Next      				
 
-目前单单 fibx 开发完成的进度为 60%
-
-测试
-
 more 中间件 : 					
 
-* route							
-* session								
-* static
+* session										
+* static			
+* body parse			
+* and more ...
