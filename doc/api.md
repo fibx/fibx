@@ -178,7 +178,7 @@ this.set({
   		httpOnly: boolean, 				//默认为 true
   		path: String,
   		domain: String,
-  		expires: Date
+  		expires: Date						//默认为当前时间
   }
 ```
 				
