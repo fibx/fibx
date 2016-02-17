@@ -9,7 +9,7 @@
   "scripts": {
     "install": "fibjs fibjs-install.js",
     "example": "fibjs ./test/simple-example.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "fibjs ./test/index.js"
   },
   "repository": {
     "type": "git",
