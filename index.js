@@ -11,6 +11,7 @@ var response = require('./lib/response');
 var cookies = require('./lib/cookies');
 
 var app = Application.prototype;
+var methodCollection = {};
 
 module.exports = Application;
 
@@ -19,16 +20,18 @@ function Application() {
     this.middlewares = {'__all__': []};
     this.connected = {};
     this.routing = {};
-    request.init.call(this);
-    cookies.init.call(this);
-    response.init.call(this);
+    request.init.call(methodCollection);
+    cookies.init.call(methodCollection);
+    response.init.call(methodCollection);
 }
 
 app.listen = function(port) {
     var that = this;
     for (var route in this.middlewares) {
         (function(route) {
-            that.connected[route] = connect.call(that, that.middlewares['__all__'].concat(that.middlewares[route]));
+            that.connected[route] = function(cxt) {
+                return connect.call(cxt, that.middlewares['__all__'].concat(that.middlewares[route]));
+            };
             that.routing[route] = function(r) {
                 that.handler.call(that, r, route);
             }
@@ -54,11 +57,13 @@ app.use = function(middleware) {
 };
 
 app.handler = function(r, route) {
-    this.r = r;
-    request.run.call(this, r);
-    cookies.run.call(this, r);
-    this.connected[route].call(this);
-    response.run.call(this, r);
+    var _r = Object.create({});
+    Object.assign(_r, methodCollection);
+    _r.r = r;
+    request.run.call(_r, r);
+    cookies.run.call(_r, r);
+    this.connected[route](_r).call(_r);
+    response.run.call(_r, r);
 };
 
 app.key = 'fibx';
