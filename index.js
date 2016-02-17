@@ -60,6 +60,7 @@ app.handler = function(r, route) {
     var _r = Object.create({});
     Object.assign(_r, methodCollection);
     _r.r = r;
+    _r.key = app.key;
     request.run.call(_r, r);
     cookies.run.call(_r, r);
     this.connected[route](_r).call(_r);
