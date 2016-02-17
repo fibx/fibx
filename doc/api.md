@@ -145,7 +145,7 @@ this.is(/text\/.*/)
 设置相应返回的内容,fibx 会自动将对象转换为 json 串,也能够对 stream 进行	输出					
 
 **this.type =**					
-设置相应的 Content-Type
+设置相应的 Content-Type,默认为 text/html
 	
 **this.status =**						
 设置相应的返回状态 					
