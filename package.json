@@ -1,13 +1,12 @@
 {
   "name": "@fibjs/fibx",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "fibjs web framework",
   "main": "index.js",
   "directories": {
     "doc": "doc"
   },
   "scripts": {
-    "install": "fibjs fibjs-install.js",
     "example": "fibjs ./test/simple-example.js",
     "test": "fibjs ./test/index.js"
   },
