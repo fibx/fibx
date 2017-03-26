@@ -1,6 +1,6 @@
 {
   "name": "@fibjs/fibx",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "fibjs web framework",
   "main": "index.js",
   "directories": {
