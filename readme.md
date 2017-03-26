@@ -1,19 +1,19 @@
-#FibX
+# FibX
 
 ***
 
 **fibx** 是 fibjs 的一个 web 框架,提供了中间件安装以及请求接受和应答的功能
 
-##Installation
-  
+## Installation
+
 ```
-npm install fibjs-fibx
+npm install @fibjs/fibx
 ```
 
-##Example     
+## Example     
 
 ```javascript
-var app = require('fibjs-fibx')();
+var app = require('@fibjs/fibx')();
 var http = require('http');
 
 app.use(function(next) {
@@ -52,11 +52,11 @@ app.use('^(/.*)$', function() {
 app.listen(10023);
 ```
 
-##Api
+## Api
 
 [API Doc](https://github.com/fibx/fibx/blob/master/doc/api.md)
-       
-##Other          
+
+## Other          
 
 如果你想写一个 fibjs 模块上传到 npm,必须像本项目在目录下放如 fibjs-install.js 的文件.							
 
@@ -81,14 +81,14 @@ switch (os.type) {
 ```
 
 然后在 package.json 中添加     
-  
+
 ```json					
 "scripts": {
     "install": "fibjs fibjs-install.js",
  }
 ```           
 
-##Next      				
+## Next      				
 
 more 中间件 : 					
 

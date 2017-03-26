@@ -1,6 +1,6 @@
-##app
+## app
 
-###app.use( [route,] handler)          
+### app.use( [route,] handler)          
 
 **设置一个中间件**							
 
@@ -10,7 +10,7 @@
 * 根据路由来执行的中间件 ('尽量量避免使用')   		
 
 全局的中间件				
-			
+
 ```javascript							
 app.use(function(next){
 	console.log('global middleware');
@@ -18,7 +18,7 @@ app.use(function(next){
 });
 ```						
 
-根据路由的中间件,路由规则为一个 **正则表达式** 
+根据路由的中间件,路由规则为一个 **正则表达式**
 
 ```javascript       
 app.use('^/go(/.*)$', function(next){
@@ -71,23 +71,23 @@ app.use(function(next){
 });
 ```
 
-###app.listen( port )						
+### app.listen( port )						
 
 可以监听 port 启动一个服务器						
 
-###app.key =   
+### app.key =   
 
 给你的服务器加个特殊的标识						
 cookie 加密就有用到这个 key,默认是 fibx
 
-##request
+## request
 
 **this.method**								
 请求的方式							
 
 **this.query**					
 带在 url 上的参数            
- 
+
 ```
 127.0.0.1:12306/post/Rube/?a=1&b=2;												
 this.query       // {a : 1 , b : 2}
@@ -126,17 +126,17 @@ this.query       // {a : 1 , b : 2}
 
 **this.type**						
 请求的类型 = this.get( 'Content-Type' )			
-	
+
 **this.is( reg )**					
 是否为所对应的请求类型					
 reg 是一个正在表达式			
-			
+
 ```javascript				
 this.is(/text\/javascript/);
 this.is(/text\/.*/)
 ```
 
-##response
+## response
 
 **this.redirect( url )**						
 跳转到相应的 url							
@@ -146,17 +146,17 @@ this.is(/text\/.*/)
 
 **this.type =**					
 设置相应的 Content-Type,默认为 text/html
-	
+
 **this.status =**						
 设置相应的返回状态 					
 
 **this.set( obj )**							
 **this.set( filed, value )**					
 设置返回头				
-						
+
 ```javascript
 this.set( 'lastModified', new Date() );		
-		
+
 this.set({
 	'lastModified': new Date(),
 	'Content-Type': 'text/javascript'
@@ -164,10 +164,10 @@ this.set({
 ```
 
 **this.remove( filed )**			
-移除返回头字段	
+移除返回头字段
 ```this.remove( 'Content-Type' )```
-	
-##cookies						
+
+## cookies						
 
 **this.cookies.set( name, value [, option])**
 设置 cookies 的值	,默认是加密且 httpOnly = true 的						
@@ -181,7 +181,7 @@ this.set({
   		expires: Date						//默认为当前时间
   }
 ```
-				
+
 ```javascript					
 this.cookies.set( 'rube', 'hello',{
 	path:'/',
@@ -194,6 +194,3 @@ this.cookies.set( 'rube', 'hello',{
 **this.cookies.get( name [, option] )**				
 获取 cookies 值,默认获取的是通过加密的 cookie						
 要获取非加密的值 ```option.signed = false```
-
-
-
