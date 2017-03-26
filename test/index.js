@@ -321,3 +321,4 @@ describe('-----------------------fibx----------------------\r\n', function() {
 });
 
 test.run();
+process.exit(0);
