@@ -1,6 +1,6 @@
 {
-  "name": "fibjs-fibx",
-  "version": "0.2.0",
+  "name": "@fibjs/fibx",
+  "version": "0.3.0",
   "description": "fibjs web framework",
   "main": "index.js",
   "directories": {
@@ -22,7 +22,7 @@
     "framework"
   ],
   "author": "Rube",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/fibx/fibx/issues"
   },
