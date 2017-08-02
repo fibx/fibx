@@ -26,6 +26,20 @@ for (var i = 0; i < 1000; i++) {
     });
 }
 
+app.use('^/request/basic$', function() {
+    this.body = {
+        method: this.method,
+        keepAlive: this.keepAlive,
+        path: this.path,
+        protocol: this.protocol,
+        ip: this.ip,
+        port: this.port,
+        length: this.length,
+        type: this.type,
+        host: this.host
+    };
+});
+
 app.use('^/all(/.*)$', function() {
     this.state.number = 'all';
     return 'hello world Rube~';

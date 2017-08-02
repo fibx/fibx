@@ -76,7 +76,7 @@ coroutine.start(function() {
     });
 
     app.use('^/response/stream$', function() {
-        this.body = fs.open('./index.js');
+        this.body = fs.openFile('./index.js');
     });
 
     app.use('^/response/status$', function() {
@@ -157,7 +157,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
 
         it('fibx fileHandler can be used', function() {
             var r = http.request('get', 'http://127.0.0.1:5210/fileHandle/index.js');
-            var text = fs.open('./index.js').read().toString();
+            var text = fs.readFile('./index.js').toString();
             assert.equal(text, r.read().toString());
         });
 
@@ -203,7 +203,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
     describe('fibx request', function() {
 
         it('request basic', function() {
-            var r = http.request('get', 'http://127.0.0.1:5210/request/basic');
+            var r = http.request('get', 'http://127.0.0.1:10023/request/basic');
             var res = {
                 "method": "get",
                 "keepAlive": true,
@@ -278,7 +278,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
 
         it('response stream', function() {
             var r = http.request('get', 'http://127.0.0.1:5210/response/stream');
-            assert.equal(r.read().toString(), fs.open('./index.js').readAll().toString());
+            assert.equal(r.read().toString(), fs.readFile('./index.js', 'utf8').toString());
         });
 
         it('response redirect', function() {

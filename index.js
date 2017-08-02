@@ -18,6 +18,7 @@ module.exports = Application;
 function Application() {
     if (!(this instanceof Application)) return new Application();
     this.middlewares = {'__all__': []};
+    this.nativeMiddlewares = [];
     this.connected = {};
     this.routing = {};
     request.init.call(methodCollection);
@@ -38,11 +39,16 @@ app.listen = function(port) {
         })(route);
     }
 
-    var svr = new http.Server(port, new mq.Routing(that.routing));
+    var svr = new http.Server(port, this.nativeMiddlewares.concat(new mq.Routing(that.routing)));
     svr.run();
 };
 
 app.use = function(middleware) {
+    if (middleware.toString().toLocaleLowerCase() === 'handler'){
+        this.nativeMiddlewares.push(middleware);
+        return;
+    }
+
     if (typeof middleware === 'function') {
         this.middlewares['__all__'].push(middleware);
     } else {
