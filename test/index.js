@@ -203,7 +203,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
     describe('fibx request', function() {
 
         it('request basic', function() {
-            var r = http.request('get', 'http://127.0.0.1:10023/request/basic');
+            var r = http.request('get', 'http://127.0.0.1:5210/request/basic');
             var res = {
                 "method": "get",
                 "keepAlive": true,
