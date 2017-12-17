@@ -23,7 +23,7 @@
   "author": "Rube",
   "license": "GPL-3.0",
   "engines": {
-    "fibjs": "<=0.20.0"
+    "fibjs": ">=0.20.0"
   },
   "bugs": {
     "url": "https://github.com/fibx/fibx/issues"
