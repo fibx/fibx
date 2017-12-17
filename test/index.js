@@ -121,7 +121,7 @@ coroutine.start(function() {
     });
     /** fibx basic **/
     app.use(function(next) {
-        this.body = 'hello world';
+        this.state = {body: 'hello world'};
         next && next();
     });
     app.use('^/fibx$', function() {
@@ -130,6 +130,9 @@ coroutine.start(function() {
     app.use('^/fileHandle/(.*)$', http.fileHandler('./'));
     app.use('/', function() {
         this.body = 'hello b';
+    });
+    app.use('/__all__', function(){
+        this.body = this.state.body;
     });
     app.listen(5210);
 });
@@ -164,10 +167,10 @@ describe('-----------------------fibx----------------------\r\n', function() {
         it('request is independent', function() {
             var r = http.request('get', 'http://127.0.0.1:5210/response/status');
             assert.equal(r.headers.first('Content-Type'), 'text/xml');
-            assert.equal(r.status, 500);
+            assert.equal(r.statusCode, 500);
 
             var r = http.request('get', 'http://127.0.0.1:5210/response/number');
-            assert.equal(r.status, 200);
+            assert.equal(r.statusCode, 200);
         });
     });
 
@@ -225,13 +228,13 @@ describe('-----------------------fibx----------------------\r\n', function() {
         });
 
         it('request form', function() {
-            var r = http.post('http://127.0.0.1:5210/request/form', "hello=a&world=b", {"Content-Type": "application/x-www-form-urlencoded"});
+            var r = http.post('http://127.0.0.1:5210/request/form', {body: "hello=a&world=b", headers: {"Content-Type": "application/x-www-form-urlencoded"}});
             assert.equal(r.read().toString(), JSON.stringify({hello: "a", world: "b"}));
         });
 
         it('request type is/get', function() {
-            var r = http.request('get', 'http://127.0.0.1:5210/request/type', {"Content-Type": "text/xml"});
-            var r1 = http.request('get', 'http://127.0.0.1:5210/request/type', {"Content-Type": "text/xm1"});
+            var r = http.request('get', 'http://127.0.0.1:5210/request/type', {headers: {"Content-Type": "text/xml"}});
+            var r1 = http.request('get', 'http://127.0.0.1:5210/request/type',{headers: {"Content-Type": "text/xm1"}});
             assert.equal('false', r1.read().toString());
             assert.equal('true', r.read().toString());
         });
@@ -289,7 +292,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
         it('response status and content-type', function() {
             var r = http.request('get', 'http://127.0.0.1:5210/response/status');
             assert.equal(r.headers.first('Content-Type'), 'text/xml');
-            assert.equal(r.status, 500);
+            assert.equal(r.statusCode, 500);
         });
     });
 
@@ -298,7 +301,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
         it('set signed cookie', function() {
             var value = 'Rube';
             var value_hex =md5(md5('bRube').digest().hex() + app.key).digest().hex();
-            var r = http.get('http://127.0.0.1:5210/cookies/signed?c=get',{"cookie":"b=" + value + "; path=/; b.sig=" + value_hex + "; path=/;"});
+            var r = http.get('http://127.0.0.1:5210/cookies/signed?c=get',{headers: {"cookie":"b=" + value + "; path=/; b.sig=" + value_hex + "; path=/;"}});
             assert.equal(value, r.read().toString());
         });
 
@@ -309,7 +312,7 @@ describe('-----------------------fibx----------------------\r\n', function() {
 
         it('set nosigned cookie', function() {
             var value = 'Rube';
-            var r = http.get('http://127.0.0.1:5210/cookies/nosigned?c=get',{"cookie":"a=" + value + "; path=/;"});
+            var r = http.get('http://127.0.0.1:5210/cookies/nosigned?c=get',{headers :{"cookie":"a=" + value + "; path=/;"}});
             assert.equal(value, r.read().toString());
         });
 
